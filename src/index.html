@@ -6,7 +6,27 @@
         <link href="/dist/output.css" rel="stylesheet" />
     </head>
     <body class="h-screen w-screen">
-        <div class="hero h-full w-full">
+        <nav class="navbar absolute top-5 z-20 text-white p-5">
+            <ul class="flex gap-5">
+                <li>
+                    <a
+                        href="about.html"
+                        class="border border-white p-4 font-bold"
+                    >
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="team.html"
+                        class="border border-white p-4 font-bold"
+                    >
+                        Team
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="hero h-full w-full z-10">
             <img
                 class="absolute h-full w-full"
                 src="../public/assets/bot.jpg"
@@ -19,9 +39,6 @@
                     "Knowledge is like a garden: if it is not cultivated, it
                     cannot be harvested."
                 </p>
-                <a href="about.html" class="border border-white p-4 font-bold">
-                    What is Farmbot?
-                </a>
             </div>
         </div>
     </body>
