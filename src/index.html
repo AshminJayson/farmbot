@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="/dist/output.css" rel="stylesheet" />
-    </head>
-    <body class="h-screen w-screen">
-        <nav class="navbar absolute top-5 z-20 text-white p-5">
-            <ul class="flex gap-5">
-                <li>
-                    <a
-                        href="about.html"
-                        class="border border-white p-4 font-bold"
-                    >
-                        About
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="team.html"
-                        class="border border-white p-4 font-bold"
-                    >
-                        Team
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="hero h-full w-full z-10">
-            <img
-                class="absolute h-full w-full"
-                src="../public/assets/bot.jpg"
-                alt=""
-            />
-            <div
-                class="overlay bg-black text-white opacity-60 h-full flex flex-col justify-center items-center"
-            >
-                <p class="text-7xl text-center p-5">
-                    "Knowledge is like a garden: if it is not cultivated, it
-                    cannot be harvested."
-                </p>
-            </div>
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+  </head>
+  <body class="w-screen h-screen">
+    <nav class="absolute z-20 p-5 text-white navbar top-5">
+      <ul class="flex gap-5">
+        <li>
+          <a href="about.html" class="p-4 font-bold border border-white">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="team.html" class="p-4 font-bold border border-white">
+            Team
+          </a>
+        </li>
+        <li>
+          <a href="calculate.html" class="p-4 font-bold border border-white">
+            Calculate
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="z-10 w-full h-full hero">
+      <img
+        class="absolute w-full h-full"
+        src="../public/assets/bot.jpg"
+        alt=""
+      />
+      <div
+        class="flex flex-col items-center justify-center h-full text-white bg-black overlay opacity-60"
+      >
+        <p class="p-5 text-center text-7xl">
+          "Knowledge is like a garden: if it is not cultivated, it
+          cannot be harvested."
+        </p>
+      </div>
+    </div>
+  </body>
 </html>
