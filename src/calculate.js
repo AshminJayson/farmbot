@@ -166,5 +166,10 @@ document.getElementById("submit").addEventListener("click", function (event) {
       cropdescription.innerHTML = cropsData[selectedCrop].description;
       cropImg.src = cropsData[selectedCrop].img;
     }
+    else {
+      if (!result.classList.contains("hidden")) {
+        result.classList.add("hidden");
+      }
+    }
   }
 });
