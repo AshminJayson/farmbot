@@ -129,9 +129,98 @@ const cropsData = {
   },
 };
 
+const sortPH = (selectedList, ph) => {
+  if (selectedList.length === 0) {
+    return;
+  }
+  for (let i = 0; i < selectedList.length; i++) {
+    for (let j = i + 1; j < selectedList.length; j++) {
+      if (
+        Math.abs(selectedList[i].data.phMedian - ph) >
+        Math.abs(selectedList[j].data.phMedian - ph)
+      ) {
+        let temp = selectedList[i];
+        selectedList[i] = selectedList[j];
+        selectedList[j] = temp;
+      }
+    }
+  }
+  console.log("selectedList", selectedList);
+  return selectedList;
+};
+function createCards(imgSrc, headerText, descriptionContent) {
+  const container = document.querySelector(".card-container");
+  const card = document.createElement("a");
+  card.setAttribute("href", "#");
+  card.classList.add(
+    "flex",
+    "flex-col",
+    "items-center",
+    "bg-white",
+    "border",
+    "border-gray-200",
+    "rounded-lg",
+    "shadow",
+    "md:flex-row",
+    "md:max-w-xl",
+    "hover:bg-gray-100",
+    "dark:border-gray-700",
+    "dark:bg-gray-800",
+    "dark:hover:bg-gray-700",
+    "transition-all",
+    "duration-300"
+  );
+  const img = document.createElement("img");
+  img.setAttribute("src", imgSrc);
+  img.setAttribute("alt", "");
+  img.classList.add(
+    "object-fill",
+    "w-full",
+    "rounded-t-lg",
+    "h-96",
+    "md:h-auto",
+    "md:w-48",
+    "md:rounded-none",
+    "md:rounded-s-lg"
+  );
+  const textContainer = document.createElement("div");
+  textContainer.classList.add(
+    "flex",
+    "flex-col",
+    "justify-between",
+    "p-4",
+    "leading-normal"
+  );
+  const header = document.createElement("h5");
+  header.classList.add(
+    "mb-2",
+    "text-2xl",
+    "font-bold",
+    "tracking-tight",
+    "text-gray-900",
+    "dark:text-white"
+  );
+  header.textContent = headerText;
+  const description = document.createElement("p");
+  description.classList.add(
+    "mb-3",
+    "font-normal",
+    "text-gray-700",
+    "dark:text-gray-400"
+  );
+  description.textContent = descriptionContent;
+  textContainer.appendChild(header);
+  textContainer.appendChild(description);
+  card.appendChild(img);
+  card.appendChild(textContainer);
+  container.appendChild(card);
+}
+const deleteCards = () => {
+  const container = document.querySelector(".card-container");
+  container.innerHTML = "";
+};
 document.getElementById("submit").addEventListener("click", function (event) {
   event.preventDefault();
-
   let temperature = document.getElementById("temperature").value;
   let ph = document.getElementById("ph").value;
   temperature = parseInt(temperature);
@@ -142,29 +231,61 @@ document.getElementById("submit").addEventListener("click", function (event) {
       temperature >= cropsData[crop].lowerTemperature &&
       temperature <= cropsData[crop].higherTemperature
     ) {
-      selectedCrops.push(crop);
-      console.log(selectedCrops);
-    }
-    let selectedCrop = "NONE";
-    let maxi = Number.MAX_VALUE;
-    selectedCrops.forEach((crop) => {
-      if (Math.abs(cropsData[crop].phMedian - ph) < maxi) {
-        maxi = Math.abs(cropsData[crop].phMedian - ph);
-        selectedCrop = crop;
-      }
-    });
-    console.log(selectedCrop);
-    if (selectedCrop != "NONE") {
-      let result = document.querySelector("#result");
-      if (result.classList.contains("hidden")) {
-        result.classList.remove("hidden");
-      }
-      let cropImg = document.querySelector("#cropImg");
-      let cropheading = document.querySelector("#cropHeader");
-      let cropdescription = document.querySelector("#cropdescription");
-      cropheading.innerHTML = selectedCrop;
-      cropdescription.innerHTML = cropsData[selectedCrop].description;
-      cropImg.src = cropsData[selectedCrop].img;
+      selectedCrops.push({ name: crop, data: cropsData[crop] }); // push the entire crop object
     }
   }
+  if (selectedCrops.length === 0) {
+    alert("No crops found for the given temperature");
+    deleteCards();
+    return;
+  }
+  selectedCrops.forEach((crop) => {
+    console.log(crop.name, "ph difference", Math.abs(crop.data.phMedian - ph)); // access the name property of the crop object
+  });
+  selectedCrops = sortPH(selectedCrops, ph);
+  console.log("crops after sorting");
+  selectedCrops.forEach((crop) => {
+    console.log(crop.name, "ph difference", Math.abs(crop.data.phMedian - ph)); // access the name property of the crop object
+  });
+  let noOfCardstoshow = 3 < selectedCrops.length ? 3 : selectedCrops.length;
+  deleteCards();
+  for (let i = 0; i < noOfCardstoshow; i++) {
+    createCards(
+      selectedCrops[i].data.img,
+      selectedCrops[i].name,
+      selectedCrops[i].data.description
+    );
+  }
 });
+//change
+// selectedCrops = sortPH(selectedCrops, ph);
+// console.log("crops after sorting", selectedCrops);
+// selectedCrops.forEach((crop) => {
+//   console.log(
+//     crop,
+//     "ph difference",
+//     Math.abs(cropsData[crop].phMedian - ph)
+//   );
+// });
+// let selectedCrop = "NONE";
+// let maxi = Number.MAX_VALUE;
+// selectedCrops.forEach((crop) => {
+//   if (Math.abs(cropsData[crop].phMedian - ph) < maxi) {
+//     maxi = Math.abs(cropsData[crop].phMedian - ph);
+//     selectedCrop = crop;
+//   }
+// });
+// console.log(selectedCrop);
+
+// if (selectedCrop != "NONE") {
+//   let result = document.querySelector("#result");
+//   if (result.classList.contains("hidden")) {
+//     result.classList.remove("hidden");
+//   }
+//   let cropImg = document.querySelector("#cropImg");
+//   let cropheading = document.querySelector("#cropHeader");
+//   let cropdescription = document.querySelector("#cropdescription");
+//   cropheading.innerHTML = selectedCrop;
+//   cropdescription.innerHTML = cropsData[selectedCrop].description;
+//   cropImg.src = cropsData[selectedCrop].img;
+// }
