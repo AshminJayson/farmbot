@@ -233,6 +233,11 @@ document.getElementById("submit").addEventListener("click", function (event) {
     ) {
       selectedCrops.push({ name: crop, data: cropsData[crop] }); // push the entire crop object
     }
+    else {
+      if (!result.classList.contains("hidden")) {
+        result.classList.add("hidden");
+      }
+    }
   }
   if (selectedCrops.length === 0) {
     alert("No crops found for the given temperature");
