@@ -181,7 +181,8 @@ function createCards(imgSrc, headerText, descriptionContent) {
     "md:h-auto",
     "md:w-48",
     "md:rounded-none",
-    "md:rounded-s-lg"
+    "md:rounded-s-lg",
+    "md:m-2"
   );
   const textContainer = document.createElement("div");
   textContainer.classList.add(
