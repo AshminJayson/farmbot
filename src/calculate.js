@@ -2,6 +2,8 @@ const cropsData = {
   Rice: {
     lowerTemperature: 18,
     higherTemperature: 32,
+    lowerHumidity: 80,
+    higherHumidity: 85,
     img: "../public/assets/rice.jpeg",
     phMedian: 6.5,
     description:
@@ -10,6 +12,8 @@ const cropsData = {
   Maize: {
     lowerTemperature: 21,
     higherTemperature: 27,
+    lowerHumidity: 55,
+    higherHumidity: 75,
     img: "../public/assets/maize.jpg",
     phMedian: 6.5,
     description:
@@ -18,6 +22,8 @@ const cropsData = {
   "Green pea": {
     lowerTemperature: 12,
     higherTemperature: 15,
+    lowerHumidity: 60,
+    higherHumidity: 70,
     img: "../public/assets/green peas.jpg",
     phMedian: 6.75,
     description:
@@ -26,6 +32,8 @@ const cropsData = {
   Soybean: {
     lowerTemperature: 25,
     higherTemperature: 30,
+    lowerHumidity: 40,
+    higherHumidity: 70,
     img: "../public/assets/soybean.jpg",
     phMedian: 6.4,
     description:
@@ -34,6 +42,8 @@ const cropsData = {
   Rubber: {
     lowerTemperature: 25,
     higherTemperature: 34,
+    lowerHumidity: 80,
+    higherHumidity: 100,
     img: "../public/assets/Rubber tree.webp",
     phMedian: 5.25,
     description:
@@ -42,6 +52,8 @@ const cropsData = {
   Coconut: {
     lowerTemperature: 27,
     higherTemperature: 27,
+    lowerHumidity: 90,
+    higherHumidity: 100,
     img: "../public/assets/Coconut Tree.jpg",
     phMedian: 6,
     description:
@@ -50,6 +62,8 @@ const cropsData = {
   Groundnut: {
     lowerTemperature: 27,
     higherTemperature: 30,
+    lowerHumidity: 50,
+    higherHumidity: 70,
     img: "../public/assets/Groundnut.jpg",
     phMedian: 6.75,
     description:
@@ -58,6 +72,8 @@ const cropsData = {
   Blackpepper: {
     lowerTemperature: 20,
     higherTemperature: 30,
+    lowerHumidity: 75,
+    higherHumidity: 80,
     img: "../public/assets/Blackpepper.webp",
     phMedian: 6,
     description:
@@ -66,6 +82,8 @@ const cropsData = {
   Okra: {
     lowerTemperature: 25,
     higherTemperature: 35,
+    lowerHumidity: 65,
+    higherHumidity: 75,
     img: "../public/assets/Okra.jpg",
     phMedian: 6.75,
     description:
@@ -74,6 +92,8 @@ const cropsData = {
   Tomato: {
     lowerTemperature: 21,
     higherTemperature: 24,
+    lowerHumidity: 60,
+    higherHumidity: 85,
     img: "../public/assets/Tomato.jpg",
     phMedian: 7.25,
     description:
@@ -82,6 +102,8 @@ const cropsData = {
   Cauliflower: {
     lowerTemperature: 23,
     higherTemperature: 23,
+    lowerHumidity: 60,
+    higherHumidity: 70,
     img: "../public/assets/Cauliflower.jpg",
     phMedian: 6.05,
     description:
@@ -90,6 +112,8 @@ const cropsData = {
   Cabbage: {
     lowerTemperature: 15,
     higherTemperature: 21,
+    lowerHumidity: 60,
+    higherHumidity: 90,
     img: "../public/assets/Cabbage.jpg",
     phMedian: 6.25,
     description:
@@ -98,6 +122,8 @@ const cropsData = {
   Banana: {
     lowerTemperature: 27,
     higherTemperature: 27,
+    lowerHumidity: 75,
+    higherHumidity: 85,
     img: "../public/assets/Banana tree.jpg",
     phMedian: 7,
     description:
@@ -106,6 +132,8 @@ const cropsData = {
   Guava: {
     lowerTemperature: 23,
     higherTemperature: 28,
+    lowerHumidity: 60,
+    higherHumidity: 80,
     img: "../public/assets/Guava.jpg",
     phMedian: 7,
     description:
@@ -114,6 +142,8 @@ const cropsData = {
   Jackfruit: {
     lowerTemperature: 21,
     higherTemperature: 32,
+    lowerHumidity: 70,
+    higherHumidity: 90,
     img: "../public/assets/Jackfruit.jpg",
     phMedian: 6.25,
     description:
@@ -122,6 +152,8 @@ const cropsData = {
   Mango: {
     lowerTemperature: 27,
     higherTemperature: 27,
+    lowerHumidity: 45,
+    higherHumidity: 55,
     img: "../public/assets/mango.jpg",
     phMedian: 6.5,
     description:
@@ -224,8 +256,10 @@ document.getElementById("submit").addEventListener("click", function (event) {
   event.preventDefault();
   let temperature = document.getElementById("temperature").value;
   let ph = document.getElementById("ph").value;
+  let humidity = document.getElementById("humidity").value;
   temperature = parseInt(temperature);
   ph = parseFloat(ph);
+  humidity = parseInt(humidity);
   let selectedCrops = [];
   for (const crop in cropsData) {
     if (
@@ -235,6 +269,20 @@ document.getElementById("submit").addEventListener("click", function (event) {
       selectedCrops.push({ name: crop, data: cropsData[crop] }); // push the entire crop object
     }
   }
+  let tempSelectedCrops = [];
+  for (const crop in selectedCrops) {
+    if (
+      humidity >= selectedCrops[crop].data.lowerHumidity &&
+      humidity <= selectedCrops[crop].data.higherHumidity
+    ) {
+      tempSelectedCrops.push({
+        name: selectedCrops[crop].name,
+        data: selectedCrops[crop].data,
+      });
+    }
+  }
+  selectedCrops = tempSelectedCrops;
+  console.log("selectedcropsnew", selectedCrops);
   if (selectedCrops.length === 0) {
     alert("No crops found for the given temperature");
     deleteCards();
@@ -258,35 +306,3 @@ document.getElementById("submit").addEventListener("click", function (event) {
     );
   }
 });
-//change
-// selectedCrops = sortPH(selectedCrops, ph);
-// console.log("crops after sorting", selectedCrops);
-// selectedCrops.forEach((crop) => {
-//   console.log(
-//     crop,
-//     "ph difference",
-//     Math.abs(cropsData[crop].phMedian - ph)
-//   );
-// });
-// let selectedCrop = "NONE";
-// let maxi = Number.MAX_VALUE;
-// selectedCrops.forEach((crop) => {
-//   if (Math.abs(cropsData[crop].phMedian - ph) < maxi) {
-//     maxi = Math.abs(cropsData[crop].phMedian - ph);
-//     selectedCrop = crop;
-//   }
-// });
-// console.log(selectedCrop);
-
-// if (selectedCrop != "NONE") {
-//   let result = document.querySelector("#result");
-//   if (result.classList.contains("hidden")) {
-//     result.classList.remove("hidden");
-//   }
-//   let cropImg = document.querySelector("#cropImg");
-//   let cropheading = document.querySelector("#cropHeader");
-//   let cropdescription = document.querySelector("#cropdescription");
-//   cropheading.innerHTML = selectedCrop;
-//   cropdescription.innerHTML = cropsData[selectedCrop].description;
-//   cropImg.src = cropsData[selectedCrop].img;
-// }
