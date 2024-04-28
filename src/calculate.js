@@ -396,20 +396,20 @@ document.getElementById("submit").addEventListener("click", function (event) {
     }
   }
   selectedCrops = tempSelectedCrops;
-  console.log("selectedcropsnew", selectedCrops);
+  // console.log("selectedcropsnew", selectedCrops);
   if (selectedCrops.length === 0) {
     alert("No crops found for the given temperature");
     deleteCards();
     return;
   }
-  selectedCrops.forEach((crop) => {
-    console.log(crop.name, "ph difference", Math.abs(crop.data.phMedian - ph)); // access the name property of the crop object
-  });
+  // selectedCrops.forEach((crop) => {
+  //   console.log(crop.name, "ph difference", Math.abs(crop.data.phMedian - ph)); // access the name property of the crop object
+  // });
   selectedCrops = sortPH(selectedCrops, ph);
-  console.log("crops after sorting");
-  selectedCrops.forEach((crop) => {
-    console.log(crop.name, "ph difference", Math.abs(crop.data.phMedian - ph)); // access the name property of the crop object
-  });
+  // console.log("crops after sorting");
+  // selectedCrops.forEach((crop) => {
+  //   console.log(crop.name, "ph difference", Math.abs(crop.data.phMedian - ph)); // access the name property of the crop object
+  // });
   let noOfCardstoshow = 3 < selectedCrops.length ? 3 : selectedCrops.length;
   deleteCards();
   for (let i = 0; i < noOfCardstoshow; i++) {
