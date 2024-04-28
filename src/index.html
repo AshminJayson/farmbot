@@ -6,20 +6,23 @@
     <link href="/dist/output.css" rel="stylesheet" />
   </head>
   <body class="w-screen h-screen">
-    <nav class="absolute z-20 p-5 text-white navbar top-5">
-      <ul class="flex gap-5">
+    <nav class="fixed left-0 right-0 z-20 p-5 text-white navbar top-5">
+      <ul class="flex flex-col gap-5 md:flex-row">
         <li>
-          <a href="about.html" class="p-4 font-bold border border-white">
+          <a href="about.html" class="p-2 font-bold border border-white md:p-4">
             About
           </a>
         </li>
         <li>
-          <a href="team.html" class="p-4 font-bold border border-white">
+          <a href="team.html" class="p-2 font-bold border border-white md:p-4">
             Team
           </a>
         </li>
         <li>
-          <a href="calculate.html" class="p-4 font-bold border border-white">
+          <a
+            href="calculate.html"
+            class="p-2 font-bold border border-white md:p-4"
+          >
             Calculate
           </a>
         </li>
@@ -27,16 +30,16 @@
     </nav>
     <div class="z-10 w-full h-full hero">
       <img
-        class="absolute w-full h-full"
+        class="absolute object-cover w-full h-full"
         src="../public/assets/bot.jpg"
         alt=""
       />
       <div
         class="flex flex-col items-center justify-center h-full text-white bg-black overlay opacity-60"
       >
-        <p class="p-5 text-center text-7xl">
-          "Knowledge is like a garden: if it is not cultivated, it
-          cannot be harvested."
+        <p class="p-5 text-2xl text-center sm:text-4xl md:text-5xl lg:text-7xl">
+          "Knowledge is like a garden: if it is not cultivated, it cannot be
+          harvested."
         </p>
       </div>
     </div>

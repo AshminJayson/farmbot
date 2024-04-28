@@ -1,59 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="/dist/output.css" rel="stylesheet" />
-    </head>
-    <body class="h-screen w-screen">
-        <nav class="navbar absolute top-5 z-20 text-white p-5">
-            <ul class="flex gap-5">
-                <li>
-                    <a
-                        href="index.html"
-                        class="border border-white p-4 font-bold"
-                    >
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="team.html"
-                        class="border border-white p-4 font-bold"
-                    >
-                        Team
-                    </a>
-                </li>
-                <li>
-                    <a href="calculate.html" class="p-4 font-bold border border-white">
-                      Calculate
-                    </a>
-                  </li>
-            </ul>
-        </nav>
-        <div class="hero flex h-full w-full bg-gray-700">
-            <div
-                class="h-full w-full flex flex-col text-white justify-center items-center"
-            >
-                <h3 class="text-6xl text-center">What is Farmbot?</h3>
-                <p class="text-3xl text-center px-10 my-4">
-                    Farmbot is a a robotic device equipped with various sensors
-                    to gather data on atmospheric moisture content, soil
-                    nutrient levels, ambient lighting, and pressure.
-                </p>
-                <p class="text-3xl text-center px-10 text-black">
-                    The device will analyze the collected data to recommend the
-                    optimal crop that can thrive under the prevailing
-                    environmental conditions.
-                </p>
-            </div>
-            <div class="w-full">
-                <img
-                    class="h-full w-full"
-                    src="../public/assets/farmbot2.jpeg"
-                    alt=""
-                />
-            </div>
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/output.css" rel="stylesheet" />
+  </head>
+  <body class="w-screen h-screen">
+    <nav class="fixed left-0 right-0 z-20 p-5 text-white navbar top-5">
+      <ul class="flex flex-col gap-5 md:flex-row">
+        <li>
+          <a href="index.html" class="p-2 font-bold border border-white md:p-4">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="team.html" class="p-2 font-bold border border-white md:p-4">
+            Team
+          </a>
+        </li>
+        <li>
+          <a
+            href="calculate.html"
+            class="p-2 font-bold border border-white md:p-4"
+          >
+            Calculate
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      class="flex flex-col w-full h-full bg-gray-700 pt-36 md:pt-0 hero md:flex-row"
+    >
+      <div
+        class="flex flex-col items-center justify-center w-full h-full p-4 text-white md:w-1/2"
+      >
+        <h3 class="text-4xl text-center md:text-6xl">What is Farmbot?</h3>
+        <p class="px-4 my-4 text-xl text-center md:text-3xl md:px-10">
+          Farmbot is a a robotic device equipped with various sensors to gather
+          data on atmospheric moisture content, soil nutrient levels, ambient
+          lighting, and pressure.
+        </p>
+        <p class="px-4 text-xl text-center text-black md:text-3xl md:px-10">
+          The device will analyze the collected data to recommend the optimal
+          crop that can thrive under the prevailing environmental conditions.
+        </p>
+      </div>
+      <div class="w-full md:w-1/2">
+        <img
+          class="object-cover w-full h-full"
+          src="../public/assets/farmbot2.jpeg"
+          alt=""
+        />
+      </div>
+    </div>
+  </body>
 </html>
